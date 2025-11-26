@@ -1,138 +1,3 @@
-// src/pages/AdminDashboard.jsx
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import API from "../api";
-
-
-export default function AdminDashboard() {
-  const navigate = useNavigate();
-
-  const [doctors, setDoctors] = useState([]);
-  const [meds, setMeds] = useState([]);
-  const [patientForm, setPatientForm] = useState({
-    name: "",
-    age: "",
-    gender: "Male",
-    phone: "",
-    address: "",
-    doctorId: "",
-    hospitalName: "",
-    complaint: "",
-  });
-  
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login"); 
-  };
-  const [newMed, setNewMed] = useState({
-    name: "",
-    genericName: "",
-    strength: "",
-    type: "Tablet",
-    company: "",
-  });
-  const [doctorForm, setDoctorForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    specialization: "",
-    phone: "",
-    hospitalName: "",
-  });
-
-  useEffect(() => {
-    loadDoctors();
-    loadMeds();
-  }, []);
-
-  const loadDoctors = async () => {
-    try {
-      const res = await API.get("/admin/doctors");
-      setDoctors(res.data || []);
-    } catch (err) {
-      console.error(err);
-      alert("failed to load doctors");
-    }
-  };
-
-  const loadMeds = async () => {
-    try {
-      const res = await API.get("/admin/medicines");
-      setMeds(res.data || []);
-    } catch (err) {
-      console.error(err);
-      alert("failed to load medicines");
-    }
-  };
-
-  const addMedicine = async (e) => {
-    e.preventDefault();
-    try {
-      await API.post("/admin/medicines", newMed);
-      setNewMed({
-        name: "",
-        genericName: "",
-        strength: "",
-        type: "Tablet",
-        company: "",
-      });
-      loadMeds();
-      alert("medicine added successfully");
-    } catch (err) {
-      console.error(err);
-      alert("failed to add medicine");
-    }
-  };
-
-  const createDoctor = async (e) => {
-    e.preventDefault();
-    try {
-      await API.post("/auth/create-doctor", doctorForm);
-      alert("doctor created successfully");
-      setDoctorForm({
-        name: "",
-        email: "",
-        password: "",
-        specialization: "",
-        phone: "",
-        hospitalName: "",
-      });
-      loadDoctors();
-    } catch (err) {
-      console.error(err);
-      alert("failed to create doctor");
-    }
-  };
-
-  const registerPatient = async (e) => {
-    e.preventDefault();
-    try {
-      await API.post("/admin/patients", {
-        ...patientForm,
-        doctorId: patientForm.doctorId,
-      });
-      alert("patient registered for opd successfully");
-      setPatientForm({
-        name: "",
-        age: "",
-        gender: "Male",
-        phone: "",
-        address: "",
-        doctorId: "",
-        hospitalName: "",
-        complaint: "",
-      });
-    } catch (err) {
-      console.error(err);
-      alert("failed to register patient");
-    }
-  };
-
-  const inputClass =
-    "w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none text-sm";
-  const buttonClass =
-    "w-full px-4 py-2 rounded-lg font-semibold text-white transition transform hover:scale-[1.02] active:scale-95 shadow";
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <div className=" px-4 py-6">
@@ -156,7 +21,7 @@ export default function AdminDashboard() {
               </button>
               <button
                 className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm shadow"
-               onClick={handleLogout}
+                onClick={Logout}
               >
                 logout
               </button>
@@ -436,4 +301,3 @@ export default function AdminDashboard() {
       </div>
     </div>
   );
-}
