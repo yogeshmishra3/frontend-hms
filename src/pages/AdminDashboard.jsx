@@ -3,17 +3,21 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
 
-function Logout() {
-  localStorage.clear();
-  window.location = "/login";
-  return null;
-}
+// function Logout() {
+//   localStorage.clear();
+//   window.location = "/login";
+//   return null;
+// }
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
 
   const [doctors, setDoctors] = useState([]);
   const [meds, setMeds] = useState([]);
+   const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login"); 
+  };
   const [patientForm, setPatientForm] = useState({
     name: "",
     age: "",
@@ -156,7 +160,7 @@ export default function AdminDashboard() {
               </button>
               <button
                 className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 text-sm shadow"
-                onClick={Logout}
+                onClick={handleLogout}
               >
                 logout
               </button>
@@ -167,7 +171,7 @@ export default function AdminDashboard() {
         {/* top grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Create Doctor Section */}
-          <section className="bg-white rounded-xl shadow-md p-4 sm:p-6">
+          <section className="bg-white rounded-xl text-black shadow-md p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg sm:text-xl font-bold text-gray-800">
                 create doctor
@@ -245,7 +249,7 @@ export default function AdminDashboard() {
           </section>
 
           {/* Add Medicine Section */}
-          <section className="bg-white rounded-xl shadow-md p-4 sm:p-6">
+          <section className="bg-white rounded-xl shadow-md text-black p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg sm:text-xl font-bold text-gray-800">
                 add medicine
@@ -305,7 +309,7 @@ export default function AdminDashboard() {
             </form>
 
             {meds.length > 0 && (
-              <div className="mt-5">
+              <div className="mt-5 text-black">
                 <h3 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">
                   available medicines ({meds.length})
                 </h3>
@@ -339,7 +343,7 @@ export default function AdminDashboard() {
           </div>
           <form
             onSubmit={registerPatient}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-4 text-black"
           >
             <input
               className={inputClass}
