@@ -23,8 +23,8 @@ export default function Login() {
 
   return (
     <div className=" flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
-      <div className="w-full ">
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
+      <div className="h-screen items-center justify-center">
+        <div className="bg-white rounded-2xl shadow-lg p-6 mt-15 sm:p-8">
           <div className="mb-6 text-center">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
               Welcome back
@@ -73,10 +73,6 @@ export default function Login() {
               login
             </button>
           </form>
-
-          <p className="mt-4 text-[11px] text-gray-400 text-center">
-            make sure you use the email and password given by admin.
-          </p>
         </div>
       </div>
     </div>
