@@ -22,7 +22,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
+    <div className=" flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4">
       <div className="w-full ">
         <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8">
           <div className="mb-6 text-center">
