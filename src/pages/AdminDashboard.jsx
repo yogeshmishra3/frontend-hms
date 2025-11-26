@@ -3,10 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api";
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login"); 
-  };
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -23,6 +19,11 @@ export default function AdminDashboard() {
     hospitalName: "",
     complaint: "",
   });
+  
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login"); 
+  };
   const [newMed, setNewMed] = useState({
     name: "",
     genericName: "",
