@@ -200,7 +200,7 @@ export default function AdminDashboard() {
               <input
                 className={inputClass}
                 type="password"
-                placeholder="password (optional)"
+                placeholder="password"
                 value={doctorForm.password}
                 onChange={(e) =>
                   setDoctorForm({ ...doctorForm, password: e.target.value })
